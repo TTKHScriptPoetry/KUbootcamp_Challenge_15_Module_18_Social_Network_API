@@ -44,7 +44,7 @@ const thoughtController = {
       })
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No thought found with this id!' });
+          res.status(404).json({ message: 'No user found with this id to add thoughts!' });
           return;
         }
         res.json(dbUserData);
@@ -52,12 +52,33 @@ const thoughtController = {
       .catch(err => res.json(err));
   },
 
+  // // // add reaction to thought
+  // // addReaction({ params, body }, res) {
+  // //   Thought.findOneAndUpdate(
+  // //     { _id: body.thoughtId }, //{ _id: params.thoughtId }, //
+  // //     { $push: { reactions: body } }, 
+  // //     { new: true }
+  // //     )
+  // //     .then(dbUserData => {
+  // //       if (!dbUserData) {
+  // //         res.status(404).json({ message: 'No thought found with this id to add reactions!' });
+  // //         return;
+  // //       }
+  // //       res.json(dbUserData);
+  // //     })
+  // //     .catch(err => res.json(err));
+  // // },
+
   // add reaction to thought
   addReaction({ params, body }, res) {
-    Thought.findOneAndUpdate({ _id: params.thoughtId }, { $push: { reactions: body } }, { new: true })
+    Thought.findOneAndUpdate(
+      { _id: params.thoughtId }, //
+      { $push: { reactions: body } }, 
+      { new: true }
+      )
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No user found with this id!' });
+          res.status(404).json({ message: 'No thought found with this id to add reactions!' });
           return;
         }
         res.json(dbUserData);

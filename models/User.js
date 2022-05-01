@@ -28,11 +28,25 @@ const UserSchema = new Schema(
       [
         { 
           type: Schema.Types.ObjectId,  
+          unique: true,
           ref: 'User'  
         }
       ] 
-  }, 
+    },
+    {
+      // -- Tell the schema that it can use virtuals
+      toJSON: { 
+         virtuals: true,
+         getters: true
+      },
+      id: false // False because it is a virtual that Mongoose returns, and we don’t need it.
+   }
 );
+
+UserSchema.virtual('friendCount').get(function() {
+  return this.friends.length;
+  
+});
 
 const User = model('User', UserSchema);
 
