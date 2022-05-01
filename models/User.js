@@ -6,14 +6,14 @@ const UserSchema = new Schema(
       type: String,
       unique: true,
       trim: true,
-      required: 'UserName is Required'
+      required: 'Username is Required'
     },
 
     email: {
       type: String,
       unique: true,
       required: 'Email is Required',
-      match: [/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, 'Please enter a valid e-mail address']
+      match: [/^([a-zA-Z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/, 'Please enter a valid e-mail address']
     },
 
     thoughts: 
