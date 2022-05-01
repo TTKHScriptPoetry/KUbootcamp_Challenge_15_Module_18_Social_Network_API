@@ -34,8 +34,8 @@ const ThoughtSchema = new Schema(
    {  
       thoughtText: {
          type: String,
-         required: 'UserName is Required',
-         validate: [({ length }) => 280 > length > 1, 'Must be between 1 and 280 characters.']
+         required: 'Content of Thought is Required',
+         validate: [({ length }) => length <= 280, 'Must be between 1 and 280 characters.']
       },
       createdAt: {
       type: Date,

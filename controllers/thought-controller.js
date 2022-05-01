@@ -12,20 +12,15 @@ const thoughtController = {
         res.status(400).json(err);
     });
   },
-
    
   // get one thought by id
   getThoughtById({ params }, res) {
     Thought.findOne({ _id: params.thoughtId })
-    // .populate({
-    //     path: 'thoughts',
-    //     select: '-__v'
-    // })
     .select('-__v')
     .then(dbThoughtData => {
-        // If no user is found, send 404
+        // If no thought is found, send 404
         if (!dbThoughtData) {
-          res.status(404).json({ message: 'No user found with this id!' });
+          res.status(404).json({ message: 'No thought found with this id!' });
           return;
         }
         res.json(dbThoughtData);
@@ -35,20 +30,21 @@ const thoughtController = {
         res.status(400).json(err);
     });
   },
+
   // add user's thought 
   addThought({ params, body }, res) {
     console.log(body);
     Thought.create(body)
       .then(({ _id }) => {
         return User.findOneAndUpdate(
-          { _id: params.pizzaId },
-          { $push: { reactions: _id } },
+          { _id: body.userId }, //{ _id: params.userId }, //
+          { $push: { thoughts: _id } },
           { new: true }
         );
       })
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No pizza found with this id!' });
+          res.status(404).json({ message: 'No thought found with this id!' });
           return;
         }
         res.json(dbUserData);
@@ -77,14 +73,14 @@ const thoughtController = {
           return res.status(404).json({ message: 'No thought with this id!' });
         }
         return User.findOneAndUpdate(
-          { _id: params.pizzaId },
+          { _id: params.userId },
           { $pull: { reactions: params.thoughtId } },
           { new: true }
         );
       })
       .then(dbUserData => {
         if (!dbUserData) {
-          res.status(404).json({ message: 'No pizza found with this id!' });
+          res.status(404).json({ message: 'No user found with this id!' });
           return;
         }
         res.json(dbUserData);
