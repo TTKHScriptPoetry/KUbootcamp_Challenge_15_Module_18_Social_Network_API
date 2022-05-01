@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "kubootcamp_challenge_15_module_18_social_network_api",
+  "description": "Express.js for Routing - MongoDB as Backend database - Mongoose as ODM",
+  "version": "1.0.0",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TTKHScriptPoetry/KUbootcamp_Challenge_15_Module_18_Social_Network_API.git"
+  },
+  "keywords": [
+    "MongoDB",
+    "Mongoose",
+    "Express",
+    "Node.js"
+  ],
+  "author": "HKT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TTKHScriptPoetry/KUbootcamp_Challenge_15_Module_18_Social_Network_API/issues"
+  },
+  "homepage": "https://github.com/TTKHScriptPoetry/KUbootcamp_Challenge_15_Module_18_Social_Network_API#readme"
+}
